@@ -7,7 +7,7 @@ Mobile bottom tab bar. Full technical SEO — see `SEO.md`.
 
 ---
 
-## Chalane ka tareeqa
+## How to Run
 
 ```bash
 npm install
@@ -70,8 +70,8 @@ Chaaron methods `src/lib/site.ts` me hain. Apne account numbers wahan daalo:
 
 ```ts
 export const PAYMENT_ACCOUNTS = {
-  jazzcash:  { title: 'WoodHub Pakistan', number: '0317 1713002' },
-  easypaisa: { title: 'WoodHub Pakistan', number: '0345 1713002' },
+  jazzcash:  { title: 'WoodHub Pakistan', number: '000-00000000' },
+  easypaisa: { title: 'WoodHub Pakistan', number: '000-00000000' },
   bank:      { title: 'WoodHub Pakistan', bank: 'Meezan Bank', number: 'PK00 ...', branch: 'Lahore Main' },
 };
 ```
