@@ -12,7 +12,7 @@ export const SITE = {
   street: 'Hall Road',
   postalCode: '54000',
   phone: process.env.NEXT_PUBLIC_PHONE || '+92 311 7338244',
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '923171713002',
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '923117338244',
   email: process.env.NEXT_PUBLIC_EMAIL || 'orders@woodhub.pk',
   social: {
     instagram: 'https://instagram.com/woodhub.pk',
