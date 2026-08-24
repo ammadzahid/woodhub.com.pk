@@ -11,7 +11,7 @@ export const SITE = {
   city: 'Lahore',
   street: 'Hall Road',
   postalCode: '54000',
-  phone: process.env.NEXT_PUBLIC_PHONE || '+92 317 1713002',
+  phone: process.env.NEXT_PUBLIC_PHONE || '+92 311 7338244',
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP || '923171713002',
   email: process.env.NEXT_PUBLIC_EMAIL || 'orders@woodhub.pk',
   social: {
@@ -31,8 +31,8 @@ export const SHIPPING = {
 
 /** Manual payment accounts — apni real details yahan daalo. */
 export const PAYMENT_ACCOUNTS = {
-  jazzcash: { title: 'WoodHub Pakistan', number: '0317 1713002' },
-  easypaisa: { title: 'WoodHub Pakistan', number: '0345 1713002' },
+  jazzcash: { title: 'WoodHub Pakistan', number: '0311 7338244' },
+  easypaisa: { title: 'WoodHub Pakistan', number: '0311 7338244' },
   bank: {
     title: 'WoodHub Pakistan',
     bank: 'Meezan Bank',
