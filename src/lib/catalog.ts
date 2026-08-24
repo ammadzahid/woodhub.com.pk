@@ -1,0 +1,630 @@
+// AUTO-STRUCTURED CATALOG — safe to edit by hand.
+// Har product ka data yahin hai: naam, price, images, spec. Naya product add karna ho
+// to bas is array me ek object push karo aur image /public/products/<slug>.jpg rakh do.
+
+export type CategorySlug =
+  | 'wall-decor'
+  | 'shelves'
+  | 'kitchen'
+  | 'desk'
+  | 'lighting'
+  | 'gifts';
+
+export interface Category {
+  slug: CategorySlug;
+  label: string;
+  title: string;
+  blurb: string;
+  cover: string;
+}
+
+export interface Product {
+  id: string;
+  slug: string;
+  name: string;
+  category: CategorySlug;
+  price: number;
+  compareAt: number | null;
+  wood: string;
+  dimensions: string;
+  finish: string;
+  woodNote: string;
+  description: string;
+  features: string[];
+  rating: number;
+  reviews: number;
+  stock: number;
+  sku: string;
+  image: string;
+  featured: boolean;
+  personalised: boolean;
+}
+
+export const CATEGORIES: Category[] = [
+  { slug: 'wall-decor', label: "Wall Decor", title: "Wall Art & Decor", blurb: "Hand-carved panels, mandalas and jali work that turn a blank wall into the reason people stop mid-sentence.", cover: '/products/carved-mandala-wall-art.jpg' },
+  { slug: 'shelves', label: "Shelves", title: "Shelves & Wall Storage", blurb: "Floating ledges, hexagon grids and ladder units cut from solid sheesham and walnut. Anchors and screws in every box.", cover: '/products/honeycomb-hexagon-shelf.jpg' },
+  { slug: 'kitchen', label: "Kitchen", title: "Kitchen & Serving", blurb: "Boards, trays and coasters finished with food-safe oil. Built to be used every single day, not stored in a cupboard.", cover: '/products/acacia-charcuterie-board.jpg' },
+  { slug: 'desk', label: "Desk", title: "Desk & Office", blurb: "Organisers, docks and risers that clear the clutter off a work surface without adding plastic to it.", cover: '/products/desk-organiser-station.jpg' },
+  { slug: 'lighting', label: "Lighting", title: "Lamps & Lighting", blurb: "Turned bases, carved shades and warm bulbs. Wood softens light in a way metal and glass never manage.", cover: '/products/moon-glow-night-lamp.jpg' },
+  { slug: 'gifts', label: "Gifts", title: "Gifts & Personalised", blurb: "Names, dates and messages engraved by hand. Ordered today, engraved tomorrow, delivered across Pakistan.", cover: '/products/personalised-name-plate.jpg' },
+];
+
+export const PRODUCTS: Product[] = [
+  {
+    id: 'p001', slug: 'carved-mandala-wall-art',
+    name: "Carved Mandala Wall Art",
+    category: 'wall-decor', price: 8900, compareAt: 11500,
+    wood: "Sheesham", dimensions: "24 x 24 in", finish: "Matte lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "A single sheesham round, chiselled into concentric mandala petals and left just matte enough to hold shadow. Depth changes as the light moves across the day.",
+    features: ["Carved from one solid round, never glued segments", "Keyhole mount pre-fitted on the back", "Each piece varies slightly \u2014 that is the hand, not a defect"],
+    rating: 4.6, reviews: 49, stock: 29,
+    sku: 'WH-WAL-001', image: '/products/carved-mandala-wall-art.jpg',
+    featured: true, personalised: false,
+  },
+  {
+    id: 'p002', slug: 'sheesham-vertical-wall-panel',
+    name: "Sheesham Vertical Wall Panel",
+    category: 'wall-decor', price: 12400, compareAt: null,
+    wood: "Sheesham", dimensions: "48 x 14 in", finish: "Oiled",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "A tall relief panel for the awkward vertical space beside a doorway or staircase. Ridges run with the grain so the pattern reads differently from either side.",
+    features: ["Full-length hanging rail across the back", "Oiled finish, no plastic sheen", "Fits stairwells and narrow entry walls"],
+    rating: 4.8, reviews: 29, stock: 38,
+    sku: 'WH-WAL-002', image: '/products/sheesham-vertical-wall-panel.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p003', slug: 'geometric-wall-art-set',
+    name: "Geometric Wall Art Set of 3",
+    category: 'wall-decor', price: 6800, compareAt: 8400,
+    wood: "Mango wood", dimensions: "3 pieces, 12 in each", finish: "Matte lacquer",
+    woodNote: "Mango wood is lighter and more open-grained, which is what lets whitewash and wax finishes sit visibly in the surface.",
+    description: "Three interlocking geometric plates meant to be hung as a loose cluster rather than a straight line. Works above a sofa or along a hallway.",
+    features: ["Set of three, mixed tones", "Paper hanging template included", "Light enough for drywall hooks"],
+    rating: 4.5, reviews: 25, stock: 36,
+    sku: 'WH-WAL-003', image: '/products/geometric-wall-art-set.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p004', slug: 'tree-of-life-wall-hanging',
+    name: "Tree of Life Wall Hanging",
+    category: 'wall-decor', price: 7600, compareAt: null,
+    wood: "Sheesham", dimensions: "22 x 22 in", finish: "Natural wax",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "The branch cutwork is done by hand, so no two trees fork the same way. Waxed rather than lacquered, which keeps the grain readable up close.",
+    features: ["Hand-cut branch work", "Wax finish, re-waxable at home", "Ships with wall anchor and screw"],
+    rating: 4.5, reviews: 33, stock: 31,
+    sku: 'WH-WAL-004', image: '/products/tree-of-life-wall-hanging.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p005', slug: 'boho-wooden-wall-frame',
+    name: "Boho Wooden Wall Frame",
+    category: 'wall-decor', price: 5400, compareAt: null,
+    wood: "Mango wood", dimensions: "20 x 26 in", finish: "Whitewash",
+    woodNote: "Mango wood is lighter and more open-grained, which is what lets whitewash and wax finishes sit visibly in the surface.",
+    description: "A woven-look frame with a soft whitewash that keeps it from going heavy in a small room. Sits well against both painted and papered walls.",
+    features: ["Whitewash over open grain", "Sealed edges, no splinters", "Hangs portrait or landscape"],
+    rating: 4.7, reviews: 72, stock: 9,
+    sku: 'WH-WAL-005', image: '/products/boho-wooden-wall-frame.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p006', slug: 'arch-wooden-mirror-frame',
+    name: "Arch Wooden Mirror Frame",
+    category: 'wall-decor', price: 13800, compareAt: 16200,
+    wood: "Sheesham", dimensions: "34 x 20 in", finish: "Matte lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "An arched surround built for entryways, with a 4 mm mirror seated in a rebate rather than glued to the face. Reads as furniture, not an accessory.",
+    features: ["4 mm mirror, seated in a rebate", "Reinforced corner joints", "Heavy-duty D-rings fitted"],
+    rating: 4.7, reviews: 26, stock: 40,
+    sku: 'WH-WAL-006', image: '/products/arch-wooden-mirror-frame.jpg',
+    featured: true, personalised: false,
+  },
+  {
+    id: 'p007', slug: 'layered-relief-wall-panel',
+    name: "Layered Relief Wall Panel",
+    category: 'wall-decor', price: 10900, compareAt: null,
+    wood: "Acacia", dimensions: "36 x 18 in", finish: "Oiled",
+    woodNote: "Acacia is hard, water-tolerant and food-safe once oiled \u2014 the reason it ends up in kitchens.",
+    description: "Four acacia layers stacked at staggered depths so the panel throws its own shadow line. Best on a wall that catches side light.",
+    features: ["Four stacked depth layers", "Shadow shifts through the day", "Cleat mount included"],
+    rating: 4.5, reviews: 68, stock: 7,
+    sku: 'WH-WAL-007', image: '/products/layered-relief-wall-panel.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p008', slug: 'hand-turned-wall-medallion',
+    name: "Hand-Turned Wall Medallion",
+    category: 'wall-decor', price: 4900, compareAt: null,
+    wood: "Mango wood", dimensions: "16 in round", finish: "Natural wax",
+    woodNote: "Mango wood is lighter and more open-grained, which is what lets whitewash and wax finishes sit visibly in the surface.",
+    description: "Turned on a lathe so the growth rings run true to centre. A quiet piece for a wall that already has enough going on.",
+    features: ["Lathe-turned, rings run true", "Compact 16 in footprint", "Keyhole mount pre-fitted"],
+    rating: 4.7, reviews: 112, stock: 7,
+    sku: 'WH-WAL-008', image: '/products/hand-turned-wall-medallion.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p009', slug: 'jali-cutwork-wall-panel',
+    name: "Jali Cutwork Wall Panel",
+    category: 'wall-decor', price: 11600, compareAt: 14000,
+    wood: "Sheesham", dimensions: "30 x 30 in", finish: "Matte lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "Traditional jali lattice, cut fine enough to pass light. Mount it over a lamp or a window and it does half the decorating on its own.",
+    features: ["Fine lattice, passes light", "Cut and sanded by hand on both faces", "Also works as a room divider insert"],
+    rating: 5.0, reviews: 22, stock: 39,
+    sku: 'WH-WAL-009', image: '/products/jali-cutwork-wall-panel.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p010', slug: 'minimal-wooden-wall-clock',
+    name: "Minimal Wooden Wall Clock",
+    category: 'wall-decor', price: 5900, compareAt: 7200,
+    wood: "Walnut", dimensions: "14 in round", finish: "Oiled",
+    woodNote: "Walnut runs darker and closer-grained, so oiled surfaces come up deep brown rather than red.",
+    description: "No numerals, no branding, no tick. A silent sweep movement and two brass hands on an oiled walnut face.",
+    features: ["Silent sweep movement, no ticking", "Runs on one AA cell", "Brass hands, oiled walnut face"],
+    rating: 4.9, reviews: 85, stock: 30,
+    sku: 'WH-WAL-010', image: '/products/minimal-wooden-wall-clock.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p011', slug: 'floating-wall-shelf-duo',
+    name: "Floating Wall Shelf Duo",
+    category: 'shelves', price: 6400, compareAt: null,
+    wood: "Sheesham", dimensions: "2 x 24 in", finish: "Oiled",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "Two ledges with the brackets hidden inside the shelf body, so the wood appears to grow out of the wall. Rated for books, not just candles.",
+    features: ["Concealed steel brackets", "Holds 12 kg per shelf", "Anchors and screws in the box"],
+    rating: 4.5, reviews: 41, stock: 40,
+    sku: 'WH-SHE-011', image: '/products/floating-wall-shelf-duo.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p012', slug: 'honeycomb-hexagon-shelf',
+    name: "Honeycomb Hexagon Shelf",
+    category: 'shelves', price: 7900, compareAt: 9600,
+    wood: "Mango wood", dimensions: "Set of 5 hexagons", finish: "Matte lacquer",
+    woodNote: "Mango wood is lighter and more open-grained, which is what lets whitewash and wax finishes sit visibly in the surface.",
+    description: "Five hexagons that can be clustered tight or scattered loose. Comes with a paper template so the first drill hole is the right one.",
+    features: ["Five hexagons, arrange your own way", "Full-size paper drilling template", "Each cell holds 4 kg"],
+    rating: 4.6, reviews: 57, stock: 10,
+    sku: 'WH-SHE-012', image: '/products/honeycomb-hexagon-shelf.jpg',
+    featured: true, personalised: false,
+  },
+  {
+    id: 'p013', slug: 'corner-ladder-shelf',
+    name: "Corner Ladder Shelf",
+    category: 'shelves', price: 14500, compareAt: 17800,
+    wood: "Sheesham", dimensions: "60 x 24 in, 5 tiers", finish: "Oiled",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "A five-tier corner unit for the dead space every room has. Leans, so there is no wall damage beyond one anti-tip strap.",
+    features: ["Five tiers, leaning frame", "Anti-tip strap included", "Flat-packs for stairs and lifts"],
+    rating: 4.7, reviews: 59, stock: 27,
+    sku: 'WH-SHE-013', image: '/products/corner-ladder-shelf.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p014', slug: 'wall-mounted-plant-shelf',
+    name: "Wall-Mounted Plant Shelf",
+    category: 'shelves', price: 5200, compareAt: null,
+    wood: "Acacia", dimensions: "30 x 8 in", finish: "Sealed matte",
+    woodNote: "Acacia is hard, water-tolerant and food-safe once oiled \u2014 the reason it ends up in kitchens.",
+    description: "Sealed against water rings so a watered pot does not leave a mark. Lipped front edge stops a pot walking off the edge.",
+    features: ["Water-resistant sealed top", "Raised front lip", "Holds three 6 in pots"],
+    rating: 4.5, reviews: 27, stock: 40,
+    sku: 'WH-SHE-014', image: '/products/wall-mounted-plant-shelf.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p015', slug: 'three-tier-display-shelf',
+    name: "Three-Tier Display Shelf",
+    category: 'shelves', price: 9800, compareAt: null,
+    wood: "Sheesham", dimensions: "36 x 30 in", finish: "Matte lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "A wall-mounted three-tier for books, frames and the plants that keep multiplying. Cross-braced, so it does not rack over time.",
+    features: ["Cross-braced against racking", "Holds 30 kg total", "Wall plate pre-drilled"],
+    rating: 4.4, reviews: 63, stock: 35,
+    sku: 'WH-SHE-015', image: '/products/three-tier-display-shelf.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p016', slug: 'walnut-book-ledge',
+    name: "Walnut Book Ledge",
+    category: 'shelves', price: 4600, compareAt: 5800,
+    wood: "Walnut", dimensions: "30 x 5 in", finish: "Oiled",
+    woodNote: "Walnut runs darker and closer-grained, so oiled surfaces come up deep brown rather than red.",
+    description: "A narrow front-facing ledge for showing covers instead of spines. Reading nooks, nurseries, and studios.",
+    features: ["Front lip holds covers upright", "Slim 5 in depth", "Two-point wall fixing"],
+    rating: 4.8, reviews: 120, stock: 24,
+    sku: 'WH-SHE-016', image: '/products/walnut-book-ledge.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p017', slug: 'rope-hanging-shelf',
+    name: "Rope Hanging Shelf",
+    category: 'shelves', price: 4200, compareAt: null,
+    wood: "Mango wood", dimensions: "24 x 8 in, 2 tiers", finish: "Natural wax",
+    woodNote: "Mango wood is lighter and more open-grained, which is what lets whitewash and wax finishes sit visibly in the surface.",
+    description: "Two waxed planks on cotton rope, height adjustable at the knot. The easiest shelf to install in a rented flat.",
+    features: ["Height adjustable at the knot", "Two ceiling hooks included", "Single-hook install, no rail needed"],
+    rating: 4.7, reviews: 127, stock: 27,
+    sku: 'WH-SHE-017', image: '/products/rope-hanging-shelf.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p018', slug: 'live-edge-floating-shelf',
+    name: "Live Edge Floating Shelf",
+    category: 'shelves', price: 8700, compareAt: 10500,
+    wood: "Acacia", dimensions: "32 in, live edge", finish: "Oiled",
+    woodNote: "Acacia is hard, water-tolerant and food-safe once oiled \u2014 the reason it ends up in kitchens.",
+    description: "The bark line is left intact along the front, so the front edge is the tree's shape rather than a saw's. Every one is a different profile.",
+    features: ["Natural live edge, no two alike", "Concealed rod mounting", "Holds 15 kg"],
+    rating: 4.6, reviews: 57, stock: 19,
+    sku: 'WH-SHE-018', image: '/products/live-edge-floating-shelf.jpg',
+    featured: true, personalised: false,
+  },
+  {
+    id: 'p019', slug: 'acacia-charcuterie-board',
+    name: "Acacia Charcuterie Board",
+    category: 'kitchen', price: 3900, compareAt: 4900,
+    wood: "Acacia", dimensions: "18 x 12 in", finish: "Food-safe oil",
+    woodNote: "Acacia is hard, water-tolerant and food-safe once oiled \u2014 the reason it ends up in kitchens.",
+    description: "Wide enough for a full spread, thick enough to take a knife without scoring through. Juice groove keeps the board dry side dry.",
+    features: ["Food-safe mineral oil finish", "Juice groove on one face", "Hand wash, re-oil monthly"],
+    rating: 4.4, reviews: 87, stock: 37,
+    sku: 'WH-KIT-019', image: '/products/acacia-charcuterie-board.jpg',
+    featured: true, personalised: false,
+  },
+  {
+    id: 'p020', slug: 'round-serving-tray',
+    name: "Round Serving Tray",
+    category: 'kitchen', price: 3400, compareAt: null,
+    wood: "Mango wood", dimensions: "16 in round", finish: "Food-safe lacquer",
+    woodNote: "Mango wood is lighter and more open-grained, which is what lets whitewash and wax finishes sit visibly in the surface.",
+    description: "Cut-in handles rather than screwed-on ones, so nothing works loose after a year of chai runs.",
+    features: ["Cut-in handles, nothing to loosen", "Sealed against spills", "16 in fits a full tea service"],
+    rating: 4.7, reviews: 98, stock: 32,
+    sku: 'WH-KIT-020', image: '/products/round-serving-tray.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p021', slug: 'end-grain-coaster-set',
+    name: "End-Grain Coaster Set of 6",
+    category: 'kitchen', price: 1450, compareAt: 1900,
+    wood: "Mixed hardwood", dimensions: "4 in, set of 6", finish: "Food-safe oil",
+    woodNote: "Offcuts from sheesham, walnut and acacia, matched by tone rather than species.",
+    description: "Cut across the grain so the rings face up and the surface takes a hot cup without scorching. Cork backed.",
+    features: ["End-grain face, heat tolerant", "Cork backing, no table scratches", "Set of six with holder"],
+    rating: 4.6, reviews: 29, stock: 11,
+    sku: 'WH-KIT-021', image: '/products/end-grain-coaster-set.jpg',
+    featured: true, personalised: false,
+  },
+  {
+    id: 'p022', slug: 'rectangular-snack-platter',
+    name: "Rectangular Snack Platter",
+    category: 'kitchen', price: 2900, compareAt: null,
+    wood: "Acacia", dimensions: "20 x 8 in", finish: "Food-safe oil",
+    woodNote: "Acacia is hard, water-tolerant and food-safe once oiled \u2014 the reason it ends up in kitchens.",
+    description: "A long, narrow platter for the awkward middle of a dining table. Fits a full row of dips or a whole loaf sliced.",
+    features: ["Long-format, fits table centres", "Food-safe oil finish", "Chamfered edges, easy to lift"],
+    rating: 4.7, reviews: 53, stock: 25,
+    sku: 'WH-KIT-022', image: '/products/rectangular-snack-platter.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p023', slug: 'hexagon-coaster-set',
+    name: "Hexagon Coaster Set of 4",
+    category: 'kitchen', price: 1250, compareAt: null,
+    wood: "Sheesham", dimensions: "4 in, set of 4", finish: "Food-safe oil",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "Four hexagons that tessellate into a trivet when you push them together. Small idea, used constantly.",
+    features: ["Tessellate into one trivet", "Felt backing", "Set of four"],
+    rating: 4.5, reviews: 136, stock: 30,
+    sku: 'WH-KIT-023', image: '/products/hexagon-coaster-set.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p024', slug: 'walnut-chopping-board',
+    name: "Walnut Chopping Board",
+    category: 'kitchen', price: 5200, compareAt: 6400,
+    wood: "Walnut", dimensions: "16 x 11 in", finish: "Food-safe oil",
+    woodNote: "Walnut runs darker and closer-grained, so oiled surfaces come up deep brown rather than red.",
+    description: "Thick walnut that is kind to knife edges and does not warp after washing. The board that outlives the kitchen it was bought for.",
+    features: ["32 mm thick, resists warping", "Gentle on knife edges", "Recessed grip on both ends"],
+    rating: 4.4, reviews: 30, stock: 39,
+    sku: 'WH-KIT-024', image: '/products/walnut-chopping-board.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p025', slug: 'wall-spice-rack',
+    name: "Wall Spice Rack",
+    category: 'kitchen', price: 4400, compareAt: null,
+    wood: "Mango wood", dimensions: "24 x 6 in, 2 tiers", finish: "Sealed matte",
+    woodNote: "Mango wood is lighter and more open-grained, which is what lets whitewash and wax finishes sit visibly in the surface.",
+    description: "Two tiers with a front rail, sized for standard Pakistani masala jars rather than imported ones.",
+    features: ["Sized for local masala jars", "Front rail stops tipping", "Wipe-clean sealed finish"],
+    rating: 4.7, reviews: 91, stock: 25,
+    sku: 'WH-KIT-025', image: '/products/wall-spice-rack.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p026', slug: 'tea-serving-tray',
+    name: "Tea Serving Tray",
+    category: 'kitchen', price: 3100, compareAt: 3800,
+    wood: "Sheesham", dimensions: "18 x 12 in", finish: "Food-safe lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "Raised rim, brass-tone handles and a base that will not slide on a car seat or a coffee table.",
+    features: ["Raised rim contains spills", "Non-slip base pads", "Fits a six-cup service"],
+    rating: 4.8, reviews: 138, stock: 33,
+    sku: 'WH-KIT-026', image: '/products/tea-serving-tray.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p027', slug: 'wooden-cutlery-set',
+    name: "Wooden Cutlery Set",
+    category: 'kitchen', price: 2200, compareAt: null,
+    wood: "Acacia", dimensions: "6-piece set", finish: "Food-safe oil",
+    woodNote: "Acacia is hard, water-tolerant and food-safe once oiled \u2014 the reason it ends up in kitchens.",
+    description: "Serving spoons and tongs sanded to 400 grit, so they feel finished in the hand rather than just cut to shape.",
+    features: ["Sanded to 400 grit", "Will not scratch non-stick pans", "Six pieces with stand"],
+    rating: 4.4, reviews: 34, stock: 21,
+    sku: 'WH-KIT-027', image: '/products/wooden-cutlery-set.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p028', slug: 'desk-organiser-station',
+    name: "Desk Organiser Station",
+    category: 'desk', price: 6500, compareAt: 7900,
+    wood: "Sheesham", dimensions: "14 x 8 x 5 in", finish: "Matte lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "Pen wells, a card slot, a phone cradle and a shallow tray in one block. Sized so a laptop still fits beside it.",
+    features: ["Pen wells, card slot and phone cradle", "Felt base, no desk marks", "Leaves room for a 14 in laptop"],
+    rating: 4.7, reviews: 27, stock: 7,
+    sku: 'WH-DES-028', image: '/products/desk-organiser-station.jpg',
+    featured: true, personalised: false,
+  },
+  {
+    id: 'p029', slug: 'walnut-phone-dock',
+    name: "Walnut Phone Dock",
+    category: 'desk', price: 2400, compareAt: 3100,
+    wood: "Walnut", dimensions: "4 x 3 in", finish: "Oiled",
+    woodNote: "Walnut runs darker and closer-grained, so oiled surfaces come up deep brown rather than red.",
+    description: "Angled for face unlock while you type, with a cable channel underneath so the wire does not fight the phone.",
+    features: ["Cable channel routes the wire", "Works with a case on", "Angled for face unlock"],
+    rating: 4.8, reviews: 90, stock: 40,
+    sku: 'WH-DES-029', image: '/products/walnut-phone-dock.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p030', slug: 'desk-caddy-pro',
+    name: "Desk Caddy Pro",
+    category: 'desk', price: 4800, compareAt: null,
+    wood: "Sheesham", dimensions: "10 x 6 x 4 in", finish: "Matte lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "Three compartments at different depths, because pens, cables and sticky notes are not the same shape.",
+    features: ["Three graduated depths", "Felt-lined base", "Stacks with a second unit"],
+    rating: 5.0, reviews: 125, stock: 22,
+    sku: 'WH-DES-030', image: '/products/desk-caddy-pro.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p031', slug: 'pen-holder-cube',
+    name: "Pen Holder Cube",
+    category: 'desk', price: 1350, compareAt: null,
+    wood: "Mango wood", dimensions: "4 x 4 in", finish: "Oiled",
+    woodNote: "Mango wood is lighter and more open-grained, which is what lets whitewash and wax finishes sit visibly in the surface.",
+    description: "One block, four bored wells, weighted enough that it does not tip when you pull the last pen out.",
+    features: ["Weighted, will not tip", "Four bored wells", "Oiled, refinishable"],
+    rating: 4.8, reviews: 99, stock: 5,
+    sku: 'WH-DES-031', image: '/products/pen-holder-cube.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p032', slug: 'laptop-riser-stand',
+    name: "Laptop Riser Stand",
+    category: 'desk', price: 6900, compareAt: 8500,
+    wood: "Acacia", dimensions: "12 x 10 in", finish: "Matte lacquer",
+    woodNote: "Acacia is hard, water-tolerant and food-safe once oiled \u2014 the reason it ends up in kitchens.",
+    description: "Lifts the screen to eye level and leaves airflow underneath. Silicone strips stop the laptop from sliding forward.",
+    features: ["Raises screen to eye level", "Open underside for airflow", "Silicone anti-slip strips"],
+    rating: 5.0, reviews: 101, stock: 14,
+    sku: 'WH-DES-032', image: '/products/laptop-riser-stand.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p033', slug: 'business-card-holder',
+    name: "Business Card Holder",
+    category: 'desk', price: 1650, compareAt: null,
+    wood: "Walnut", dimensions: "4 x 2.5 in", finish: "Oiled",
+    woodNote: "Walnut runs darker and closer-grained, so oiled surfaces come up deep brown rather than red.",
+    description: "Holds around forty cards at a readable angle. Small enough to sit on a reception counter without owning it.",
+    features: ["Holds roughly 40 cards", "Angled for easy reading", "Felt base"],
+    rating: 4.8, reviews: 137, stock: 7,
+    sku: 'WH-DES-033', image: '/products/business-card-holder.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p034', slug: 'desk-file-tray',
+    name: "Desk File Tray",
+    category: 'desk', price: 3800, compareAt: 4600,
+    wood: "Sheesham", dimensions: "13 x 10 in", finish: "Matte lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "A single A4 tray with stacking pins, so one becomes three when the paperwork does.",
+    features: ["Fits A4 and Letter", "Stacking pins included", "Open front for quick access"],
+    rating: 4.5, reviews: 84, stock: 12,
+    sku: 'WH-DES-034', image: '/products/desk-file-tray.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p035', slug: 'monitor-stand-shelf',
+    name: "Monitor Stand Shelf",
+    category: 'desk', price: 8200, compareAt: null,
+    wood: "Sheesham", dimensions: "22 x 9 in", finish: "Matte lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "Raises a monitor and hides a keyboard underneath it. Rated well past the weight of a 27 in screen.",
+    features: ["Holds up to 25 kg", "Keyboard clears underneath", "Cable slot at the back"],
+    rating: 4.8, reviews: 112, stock: 29,
+    sku: 'WH-DES-035', image: '/products/monitor-stand-shelf.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p036', slug: 'moon-glow-night-lamp',
+    name: "Moon Glow Night Lamp",
+    category: 'lighting', price: 5900, compareAt: 7400,
+    wood: "Mango wood", dimensions: "8 in, USB", finish: "Natural wax",
+    woodNote: "Mango wood is lighter and more open-grained, which is what lets whitewash and wax finishes sit visibly in the surface.",
+    description: "A carved shade over a warm 2700K LED, dimmable by touch. Bright enough to read by, soft enough to sleep beside.",
+    features: ["Touch dimmer, three levels", "Warm 2700K LED, USB-C powered", "No bulb to replace"],
+    rating: 5.0, reviews: 138, stock: 9,
+    sku: 'WH-LIG-036', image: '/products/moon-glow-night-lamp.jpg',
+    featured: true, personalised: false,
+  },
+  {
+    id: 'p037', slug: 'turned-base-table-lamp',
+    name: "Turned Base Table Lamp",
+    category: 'lighting', price: 11500, compareAt: 13900,
+    wood: "Sheesham", dimensions: "18 in tall", finish: "Oiled",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "The base is turned from a single sheesham blank, so the profile is continuous with no glue lines. Linen shade included.",
+    features: ["Base turned from one blank", "Linen shade included", "In-line switch on the cord"],
+    rating: 4.5, reviews: 113, stock: 39,
+    sku: 'WH-LIG-037', image: '/products/turned-base-table-lamp.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p038', slug: 'wall-sconce-lamp',
+    name: "Wall Sconce Lamp",
+    category: 'lighting', price: 7800, compareAt: null,
+    wood: "Walnut", dimensions: "10 x 6 in", finish: "Matte lacquer",
+    woodNote: "Walnut runs darker and closer-grained, so oiled surfaces come up deep brown rather than red.",
+    description: "A plug-in sconce, so there is no electrician and no chased wall. Throws light up and down the wall.",
+    features: ["Plug-in, no wiring work", "Up and down wash", "2 m braided cord"],
+    rating: 4.6, reviews: 46, stock: 31,
+    sku: 'WH-LIG-038', image: '/products/wall-sconce-lamp.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p039', slug: 'pendant-lamp-shade',
+    name: "Pendant Lamp Shade",
+    category: 'lighting', price: 9400, compareAt: 11200,
+    wood: "Mango wood", dimensions: "14 in diameter", finish: "Natural wax",
+    woodNote: "Mango wood is lighter and more open-grained, which is what lets whitewash and wax finishes sit visibly in the surface.",
+    description: "Slatted shade that casts a striped pattern on the ceiling. Ships with the canopy, cord and E27 holder fitted.",
+    features: ["Casts a slatted ceiling pattern", "Canopy, cord and E27 holder fitted", "Cord shortens without tools"],
+    rating: 4.9, reviews: 82, stock: 30,
+    sku: 'WH-LIG-039', image: '/products/pendant-lamp-shade.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p040', slug: 'tripod-floor-lamp',
+    name: "Tripod Floor Lamp",
+    category: 'lighting', price: 16800, compareAt: 19500,
+    wood: "Sheesham", dimensions: "58 in tall", finish: "Oiled",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "A three-leg floor lamp that folds flat for moving. Foot switch on the cord, so nobody reaches over the shade in the dark.",
+    features: ["Folds flat for moving", "Foot switch on the cord", "Weighted for stability"],
+    rating: 5.0, reviews: 108, stock: 18,
+    sku: 'WH-LIG-040', image: '/products/tripod-floor-lamp.jpg',
+    featured: false, personalised: false,
+  },
+  {
+    id: 'p041', slug: 'personalised-name-plate',
+    name: "Personalised Name Plate",
+    category: 'gifts', price: 3200, compareAt: null,
+    wood: "Sheesham", dimensions: "12 x 4 in", finish: "Matte lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "Your name, cut into sheesham and finished matte. Type it at checkout and we engrave it the same working day.",
+    features: ["Engraved same working day", "Up to 24 characters", "Screws and keyhole mount included"],
+    rating: 4.5, reviews: 56, stock: 13,
+    sku: 'WH-GIF-041', image: '/products/personalised-name-plate.jpg',
+    featured: false, personalised: true,
+  },
+  {
+    id: 'p042', slug: 'engraved-photo-frame',
+    name: "Engraved Photo Frame",
+    category: 'gifts', price: 2900, compareAt: 3600,
+    wood: "Walnut", dimensions: "8 x 10 in photo", finish: "Oiled",
+    woodNote: "Walnut runs darker and closer-grained, so oiled surfaces come up deep brown rather than red.",
+    description: "A frame with a message engraved along the bottom rail. Stands or hangs, either orientation.",
+    features: ["Message engraved on the rail", "Stands or hangs, both ways", "Real glass front"],
+    rating: 4.5, reviews: 70, stock: 4,
+    sku: 'WH-GIF-042', image: '/products/engraved-photo-frame.jpg',
+    featured: false, personalised: true,
+  },
+  {
+    id: 'p043', slug: 'keychain-gift-set',
+    name: "Keychain Gift Set of 4",
+    category: 'gifts', price: 1200, compareAt: 1600,
+    wood: "Mixed hardwood", dimensions: "2.5 in, set of 4", finish: "Oiled",
+    woodNote: "Offcuts from sheesham, walnut and acacia, matched by tone rather than species.",
+    description: "Four keychains, four names, one small box. The gift that gets used every single day.",
+    features: ["Four names, one box", "Steel split rings", "Engraved both sides"],
+    rating: 4.7, reviews: 57, stock: 20,
+    sku: 'WH-GIF-043', image: '/products/keychain-gift-set.jpg',
+    featured: false, personalised: true,
+  },
+  {
+    id: 'p044', slug: 'wedding-gift-box',
+    name: "Wedding Gift Box",
+    category: 'gifts', price: 5500, compareAt: 6900,
+    wood: "Sheesham", dimensions: "12 x 9 x 4 in", finish: "Matte lacquer",
+    woodNote: "Sheesham (Indian rosewood) is the densest of the three, which is why it takes fine carving without chipping.",
+    description: "A hinged keepsake box with the couple's names and date on the lid. Lined in soft fabric so nothing inside gets scratched.",
+    features: ["Names and date engraved on the lid", "Fabric-lined interior", "Brass hinges and clasp"],
+    rating: 4.6, reviews: 48, stock: 30,
+    sku: 'WH-GIF-044', image: '/products/wedding-gift-box.jpg',
+    featured: false, personalised: true,
+  },
+  {
+    id: 'p045', slug: 'engraved-desk-nameplate',
+    name: "Engraved Desk Nameplate",
+    category: 'gifts', price: 2600, compareAt: null,
+    wood: "Walnut", dimensions: "10 x 3 in", finish: "Oiled",
+    woodNote: "Walnut runs darker and closer-grained, so oiled surfaces come up deep brown rather than red.",
+    description: "Name on the front, title underneath, walnut all the way through. For desks that have earned one.",
+    features: ["Two engraved lines", "Weighted base", "Reads clearly from across a room"],
+    rating: 4.7, reviews: 92, stock: 12,
+    sku: 'WH-GIF-045', image: '/products/engraved-desk-nameplate.jpg',
+    featured: false, personalised: true,
+  },
+];
+
+
+export const productBySlug = (slug: string) => PRODUCTS.find((p) => p.slug === slug);
+
+export const productsByCategory = (cat: CategorySlug) =>
+  PRODUCTS.filter((p) => p.category === cat);
+
+export const categoryBySlug = (slug: string) =>
+  CATEGORIES.find((c) => c.slug === slug);
+
+export const featuredProducts = () => PRODUCTS.filter((p) => p.featured);
+
+export const bestSellers = (n = 8) =>
+  [...PRODUCTS].sort((a, b) => b.reviews - a.reviews).slice(0, n);
+
+export const onSale = (n = 8) =>
+  PRODUCTS.filter((p) => p.compareAt).slice(0, n);
+
+export function relatedProducts(product: Product, n = 4) {
+  const same = PRODUCTS.filter((p) => p.category === product.category && p.slug !== product.slug);
+  const rest = PRODUCTS.filter((p) => p.category !== product.category);
+  return [...same, ...rest].slice(0, n);
+}
+
+export function discountPercent(p: Product) {
+  if (!p.compareAt) return 0;
+  return Math.round(((p.compareAt - p.price) / p.compareAt) * 100);
+}
+
+export const PRICE_BANDS = [
+  { id: 'under-2500', label: 'Under Rs 2,500', min: 0, max: 2500 },
+  { id: '2500-6000', label: 'Rs 2,500 – 6,000', min: 2500, max: 6000 },
+  { id: '6000-12000', label: 'Rs 6,000 – 12,000', min: 6000, max: 12000 },
+  { id: 'over-12000', label: 'Rs 12,000+', min: 12000, max: Infinity },
+] as const;
+
+export const WOOD_TYPES = Array.from(new Set(PRODUCTS.map((p) => p.wood))).sort();

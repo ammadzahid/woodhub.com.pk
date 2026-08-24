@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --shell-x: 1.25rem;
+    --bottombar-h: 4.25rem;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-ink text-birch font-sans antialiased;
+    /* faint end-grain wash so the dark base never reads as flat black */
+    background-image:
+      radial-gradient(1100px 620px at 78% -8%, rgba(194, 147, 74, 0.10), transparent 62%),
+      radial-gradient(760px 460px at 4% 12%, rgba(194, 147, 74, 0.06), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-patina text-ink;
+  }
+
+  :focus-visible {
+    outline: 2px solid #c2934a;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    font-variation-settings: 'SOFT' 20, 'WONK' 1, 'opsz' 40;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply bg-bark border border-edge rounded-xl px-4 py-3 text-birch placeholder:text-muted/70 w-full;
+    @apply focus:border-patina focus:outline-none transition-colors;
+    font-size: 16px; /* stops iOS zoom on focus */
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A2917A' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+    background-size: 1.1rem;
+    padding-right: 2.6rem;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #171208;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #42331c;
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8c6828;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-7 lg:px-10;
+  }
+
+  /* maker's stamp — the small monospace label used across the whole product system */
+  .stamp {
+    @apply font-mono text-2xs uppercase tracking-stamp text-muted;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold;
+    @apply transition-all duration-200 select-none;
+    @apply disabled:opacity-45 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-patina text-ink px-6 py-3.5 hover:bg-patina-soft active:scale-[.98];
+  }
+  .btn-ghost {
+    @apply btn border border-edge text-birch px-6 py-3.5 hover:border-patina hover:text-patina active:scale-[.98];
+  }
+  .btn-sm {
+    @apply px-4 py-2.5 text-sm;
+  }
+
+  .card {
+    @apply bg-bark border border-edge rounded-3xl;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-edge px-3 py-1.5;
+    @apply font-mono text-2xs uppercase tracking-stamp text-muted transition-colors;
+  }
+  .chip-on {
+    @apply border-patina bg-patina/10 text-patina;
+  }
+
+  .link-quiet {
+    @apply text-muted hover:text-patina transition-colors;
+  }
+
+  .field-label {
+    @apply block stamp mb-2;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-edge to-transparent;
+  }
+
+  /* keeps content clear of the mobile tab bar */
+  .pad-bottombar {
+    padding-bottom: calc(var(--bottombar-h) + env(safe-area-inset-bottom, 0px));
+  }
+  @media (min-width: 768px) {
+    .pad-bottombar {
+      padding-bottom: 0;
+    }
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 0.9, 0.3, 1),
+      transform 0.7s cubic-bezier(0.22, 0.9, 0.3, 1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ---- Light bands: paper sections that let product photography breathe ---- */
+@layer components {
+  .band-paper {
+    @apply bg-paper text-ink;
+  }
+  .card-paper {
+    @apply bg-chalk border border-shade rounded-3xl;
+  }
+  .btn-paper {
+    @apply btn border border-ink/20 text-ink px-6 py-3.5 hover:bg-ink hover:text-birch active:scale-[.98];
+  }
+  .chip-paper {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-shade px-3 py-1.5;
+    @apply font-mono text-2xs uppercase tracking-stamp text-ink/60 transition-colors;
+    @apply hover:border-ink/40;
+  }
+  .chip-paper-on {
+    @apply border-patina-deep bg-patina/15 text-patina-deep;
+  }
+  .hairline-paper {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-shade to-transparent;
+  }
+
+  /* Jali (lattice) cutwork — the one ornament. Used only as a section edge. */
+  .jali-edge {
+    background-image:
+      repeating-linear-gradient(45deg, currentColor 0 1px, transparent 1px 8px),
+      repeating-linear-gradient(-45deg, currentColor 0 1px, transparent 1px 8px);
+    background-size: 11px 11px;
+  }
+}
